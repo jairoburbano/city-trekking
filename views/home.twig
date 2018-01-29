@@ -1,0 +1,83 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero__media">
+        <picture>
+            <source media="(min-width: 980px)" srcset="{{ post.thumbnail.src|resize(1280, 520) }}">
+            <source media="(min-width: 720px)" srcset="{{ post.thumbnail.src|resize(768, 520) }}">
+            <img src="{{ post.thumbnail.src|resize(320, 150) }}" alt="{{ post.title }}">
+        </picture>
+    </div>
+    <div class="hero__content">
+        <h1>{{post.title}}</h1>
+    </div>
+</div>
+<div class="wrap">
+    <div class="tours--home">
+        <h2 class="title--section">Trending Tours</h2>
+        <div class="listado--item">
+            {% include 'blocks/item.twig' with {
+            posts: news
+            } only %}
+        </div><!-- /.listado--item -->
+    </div>
+    <h2 class="title--section">{{post.titulo_destacado}}</h2>
+    <div class="featured__text">
+        {% for text in post.get_field('textos_home') %}
+        <div class="item--text">
+            <h3 class="title__text">{{text.titulo_text}}</h3>
+            <div class="content">
+                {{text.texto_item|wpautop}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="testimonios">
+    <h2 class="title--section">{{post.titulo_testimonios}}</h2>
+    <div class="bajada">{{post.bajada_testimonio}}</div>
+    <div class="container">
+        <div class="block--video">
+            <div class="video__media">
+                <img src="{{ post.get_field('imagen_video')|resize(600, 100) }}" alt="{{ post.get_field('texto_video') }}">
+            </div>
+            <div class="video__content">
+                {{ post.get_field('texto_video') }}
+            </div>
+        </div>
+        <div class="logo-trip">
+            <img src="{{site.theme.uri}}/img/trip-advisor.jpg" alt="Trip advisor">
+        </div>
+    </div>
+    <div class="slide--testomonios">
+        <ul class="slides">
+            {% for quote in post.get_field('testimonios-item') %}
+            <li>
+                <div class="item--testimonials">
+                    <div class="icon">
+                        <svg><use xlink:href="#shape-icon-quote" /></svg>
+                    </div>
+                    <h3 class="title--testimonials">{{quote.titulo_item}}</h3>
+                    <div class="content">
+                        {{quote.contenido_item|wpautop}}
+                    </div>
+                    <h4 class="autor__testimonial">{{quote.autor_item}}</h4>
+                    <p class="testimonial__country">{{quote.pais_item}}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="contacto">
+    <div class="contacto__media">
+        <img src="{{site.theme.uri}}/img/forest.jpeg" alt="Contacto">
+    </div>
+    <div class="contacto__content">
+        <h2 class="contact__title">Tienes Dudas?</h2>
+        <button class="btn btn--border btn--white js-form">Contactanos</button>
+        <form action="" class="formulario"></form>
+    </div>
+</div>
+{% endblock %}

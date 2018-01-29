@@ -1,0 +1,14 @@
+{% for item in posts %}
+<a href="{{item.link}}" class="item">
+    <span class="item__media">
+        <img src="{{ TimberImage(item.thumbnail)|resize(360, 270) }}" alt="{{ item.title }}">
+    </span><!-- /.item__media -->
+    <span class="item__content">
+        <span class="item__data">
+            {{ item.get_field('duracion') }}
+        </span>
+        <span class="item__title">{{ item.title }}</span>
+    </span>
+    <button href="{{ item.link }}" class="btn btn--border btn--tour">Ver tour</button>
+</a><!-- /.item -->
+{% endfor %}

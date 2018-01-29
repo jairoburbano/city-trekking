@@ -1,0 +1,130 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% include 'blocks/hero.twig' with {
+slides: post.get_field('banner')
+} only %}
+
+<div class="wrap">
+    <div id="archive-filters">
+<?php foreach( $GLOBALS['my_query_filters'] as $key => $name ): 
+	
+	// get the field's settings without attempting to load a value
+	$field = get_field_object($key, false, false);
+	
+	
+	// set value if available
+	if( isset($_GET[ $name ]) ) {
+		
+		$field['value'] = explode(',', $_GET[ $name ]);
+		
+	}
+	
+	
+	// create filter
+	?>
+	<div class="filter" data-filter="<?php echo $name; ?>">
+		<?php create_field( $field ); ?>
+	</div>
+	
+<?php endforeach; ?>
+</div>
+
+<script type="text/javascript">
+(function($) {
+	
+	// change
+	$('#archive-filters').on('change', 'input[type="checkbox"]', function(){
+
+		// vars
+		var url = '<?php echo home_url('property'); ?>';
+			args = {};
+			
+		
+		// loop over filters
+		$('#archive-filters .filter').each(function(){
+			
+			// vars
+			var filter = $(this).data('filter'),
+				vals = [];
+			
+			
+			// find checked inputs
+			$(this).find('input:checked').each(function(){
+	
+				vals.push( $(this).val() );
+	
+			});
+			
+			
+			// append to args
+			args[ filter ] = vals.join(',');
+			
+		});
+		
+		
+		// update url
+		url += '?';
+		
+		
+		// loop over args
+		$.each(args, function( name, value ){
+			
+			url += name + '=' + value + '&';
+			
+		});
+		
+		
+		// remove last &
+		url = url.slice(0, -1);
+		
+		
+		// reload page
+		window.location.replace( url );
+		
+
+	});
+
+})(jQuery);
+</script>
+</div>
+
+
+<div class="wrap">
+    <h2 class="title--section">{{post.title}}</h2><!-- /.title--section -->
+    <div class="listado--item">
+        {% include 'blocks/item.twig' with {
+        posts: news
+        } only %}
+    </div><!-- /.listado--item -->
+</div><!-- /.wrap -->
+<div class="content--gray standar">
+    <ul class="paginador">
+        {% if pagination.prev.link %}
+        <li>
+            <a href="{{ pagination.prev.link }}" title="Anterior" class="{{ pagination.prev.link|length ? '' : 'disable' }}">
+                <svg><use xlink:href="#shape-icon-left" /></svg>
+            </a>
+        </li>
+        {% endif %}
+
+        {% for page in pagination.pages %}
+        <li>
+            <a href="{{ page.link }}" class="{{ page.class }} {% if page.link is empty %}active{% endif %}">{{ page.title }}</a>
+        </li>
+        {% endfor %}
+
+        {% if pagination.next.link %}
+        <li>
+            <a href="{{ pagination.next.link }}" title="Siguiente" class="{{ pagination.next.link|length ? '' : 'disable' }}">
+                <svg><use xlink:href="#shape-icon-right" /></svg>
+            </a>
+        </li>
+        {% endif %}
+    </ul><!-- /.paginador -->
+</div><!-- /.content--gray -->
+<div class="form--cta">
+    <h2 class="title--section">Contáctanos</h2><!-- /.title--section -->
+    {% include 'forms/form.twig' %}
+</div><!-- /.form--cta -->
+{% endblock %}

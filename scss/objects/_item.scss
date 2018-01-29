@@ -1,0 +1,69 @@
+/*------------------------------------*\
+$ITEM
+\*------------------------------------*/
+.listado--item {
+    @include respond-to(tablet) {
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row wrap;
+        position: relative;
+    }
+}
+.item {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    .btn {
+        display: none;
+        .no-touch & {
+            display: block;
+            @include center;
+            opacity: 0;
+        }
+    }
+    @include respond-to(tablet) {
+        .home & {
+            width: calc(33.333% - 3.333px);
+            &:first-of-type {
+                width: calc(60% - 5px);
+            }
+            &:nth-of-type(2) {
+                margin-bottom: 10px;
+                margin-bottom: 5px;
+            }
+            &:nth-of-type(2), &:nth-of-type(3) {
+                width: calc(40% - 5px);
+            }
+            &:nth-of-type(3) {
+                position: absolute;
+                right: 0;
+                top: 150px;
+            }
+        }
+    }
+}
+.item__media {
+    img {
+        width: 100%;
+    }
+}
+.item__content {
+    background: rgba(white, .8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    color: $principal;
+}
+.item__data {
+    @include font-size(13px, 14px);
+    display: block;
+    font-weight: 400;
+}
+.item__title {
+    @include font-size(24px, 28px);
+    display: block;
+    font-weight: 600;
+}

@@ -1,0 +1,30 @@
+/*------------------------------------*\
+$BTN
+\*------------------------------------*/
+.btn {
+    transition: all $time;
+    letter-spacing: 1px;
+}
+.btn--border {
+    @include font-size(16px, 20px);
+    padding: 4px 16px;
+    border: 2px solid $main;
+    color: $main;
+    .no-touch & {
+        &:hover {
+            background: $main;
+            color: white;
+        }
+    }
+}
+.btn--white {
+    border-color: white;
+    background-color: transparent;
+    color: white;
+    .no-touch & {
+        &:hover {
+            background: white;
+            color: $gray-dark;
+        }
+    }
+}

@@ -1,0 +1,91 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+
+<div class="content--slide">
+    <div id="slider" class="single--slide">
+        <ul class="slides">
+            {% for slide in post.get_field('slide') %}
+            <li>
+                <picture>
+                    <source media="(min-width: 980px)" srcset="{{ TimberImage(slide.imagen_slide)|resize(1280, 520) }}">
+                    <source media="(min-width: 720px)" srcset="{{ TimberImage(slide.imagen_slide)|resize(768, 520) }}">
+                    <img src="{{ TimberImage(slide.imagen_slide)|resize(320, 150) }}">
+                </picture>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="carousel" class="carousel">
+        <ul class="slides">
+            {% for slide in post.get_field('slide') %}
+            <li>
+                <img src="{{ TimberImage(slide.imagen_slide)|resize(140, 70) }}">
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div><!-- /.content--slide -->
+
+
+
+
+<div class="container">
+    <div class="wrap">
+        <h2 class="title--section">{{post.title}}</h2><!-- /.title--section -->
+        <div class="content">
+            {{post.content|wpautop}}
+        </div><!-- /.content -->
+        <div class="table">
+            {% for table in post.get_field('tabla') %}
+            <div class="item__table">
+                <p>{{table.titulo_item}}</p>
+                <p>{{table.dato_item}}</p>
+            </div><!-- /.item__table -->
+            {% endfor %}
+        </div><!-- /.table -->
+    </div><!-- /.wrap -->
+</div><!-- /.container -->
+<div class="map content--gray standar">
+    <h2 class="title--section">Mapa de Ubicación</h2><!-- /.title--section -->
+    <div id="map"></div><!-- /#map -->
+</div><!-- /.map -->
+<div class="form--solicitud">
+   {% if post.get_field('formulario') == 'yes' %}
+    <h2 class="title--section">{{post.get_field('titulo_formulario')}}</h2><!-- /.title--section -->
+    {{post.get_field('shortcode')}}
+    {% endif %}
+</div><!-- /.form--solicitud -->
+{% endblock %}
+{%block footer %}
+{% set coords = post.get_field('mapa') %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDZJD5dym6r-3P1owE8QW1T-u-v422W6A"></script>
+<script>
+    function initialize() {
+        var mapCenter = new google.maps.LatLng({{ coords.lat }}, {{ coords.lng }});
+        var zoomLevel = 16;
+        var mapOptions = {
+            center: mapCenter,
+            zoom: zoomLevel,
+            maxZoom:zoomLevel,
+            minZoom:zoomLevel,
+            disableDefaultUI: true,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+            keyboardShortcuts: false,
+            zoomControl: false,
+            streetViewControl: true
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: mapCenter,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: '{{site.theme.uri}}/img/marker.png'
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+{%endblock%}

@@ -1,0 +1,113 @@
+/*------------------------------------*\
+$FORM
+\*------------------------------------*/
+.form, .wpcf7-form {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    max-width: 930px;
+    margin: auto;
+    padding: 0 20px;
+    .form-group {
+        width: 100%;
+        @include respond-to(tablet) {
+            width: calc(50% - 10px);
+        }
+    }
+    .input-group {
+        width: 100%;
+        border-bottom: 1px solid $main-dark;
+        position: relative;
+        transition: all $time;
+        margin-bottom: 30px;
+        &.active {
+            label {
+                color: $main-dark;
+                top: -14px;
+                @include font-size(14px, 14px);
+                font-weight: bold;
+            }
+            input, textarea {
+                color: $main-dark;
+            }
+        }
+        label {
+            @include font-size(16px, 32px);
+            color: $gray;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all $time;
+        }
+        input, textarea {
+            width: 100%;
+            height: 32px;
+            background-color: transparent;
+            border-radius: 0;
+            color: $gray;
+            padding: 0 10px;
+            @include font-size(16px, 32px);
+            border: 0;
+            transition: all $time;
+        }
+        textarea {
+            resize: none;
+            height: 70px;
+            @include font-size(16px, 18px);
+        }
+    }
+}
+.wpcf7-form-control-wrap {
+    display: block;
+}
+.wpcf7-not-valid-tip {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    text-align: right;
+    width: 100%;
+    @include font-size(14px, 16px);
+}
+.wpcf7-response-output {
+    text-align: center;
+    padding: 10px !important;
+}
+.contacto {
+    padding: 30px 20px;
+    position: relative;
+}
+.contacto__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: $level1;
+    background: $principal;
+    img {
+        object-fit: cover;
+        width: 100%;
+        opacity: .6;
+    }
+}
+.contacto__content {
+    position: relative;
+    z-index: $level2;
+    .btn {
+        margin: auto;
+        display: block;
+        text-transform: uppercase;
+        border-width: 1px;
+        padding: 15px 40px;
+    }
+}
+.contact__title {
+    text-align: center;
+    color: white;
+    @include font-size(40px, 40px);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}

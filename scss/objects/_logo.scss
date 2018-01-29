@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    		$LOGO
+\*------------------------------------*/
+.logo {
+    height: 30px;
+    @include respond-to(tablet) {
+        height: 50px;
+    }
+    img {
+        display: block;
+        height: 100%;
+    }
+}

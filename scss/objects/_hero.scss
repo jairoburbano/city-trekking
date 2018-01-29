@@ -1,0 +1,28 @@
+/*------------------------------------*\
+$HERO
+\*------------------------------------*/
+.hero {
+    position: relative;
+}
+.hero__media {
+    background: $principal;
+    img {
+        width: 100%;
+        opacity: .6;
+    }
+}
+.hero__content {
+    @include center;
+    width: 100%;
+    padding: 0 20px;
+    h1 {
+        @include font-size(32px, 36px);
+        font-weight: 600;
+        color: white;
+        white-space: nowrap;
+        text-align: center;
+        @include respond-to(tablet) {
+            @include font-size(42px, 46px);
+        }
+    }
+}

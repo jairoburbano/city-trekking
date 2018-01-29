@@ -1,0 +1,51 @@
+/*------------------------------------*\
+$NAV
+\*------------------------------------*/
+.lang-menu {
+    width: 100%;
+    padding: 20px;
+    @include respond-to(tablet) {
+        width: auto;
+        padding: 10px 20px;
+    }
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: row wrap;
+        @include respond-to(tablet) {
+            justify-content: flex-end;
+        }
+        li {
+            margin: 0 10px;
+        }
+    }
+}
+.nav-main {
+    ul {
+        @include respond-to(tablet) {
+            display: flex;
+            justify-content: flex-end;
+            flex-flow: row wrap;
+            padding: 0 20px;
+        }
+    }
+    .menu-item {
+        width: 100%;
+        text-align: center;
+        margin: 20px 0;
+        @include font-size(28px, 32px);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        @include respond-to(tablet) {
+            @include font-size(14px, 20px);
+            width: auto;
+            margin: 0 10px;
+            padding: 0 10px;
+        }
+        a {
+            color: $principal;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+# Teuber
+
+# TEAM/EQUIPO
+	Developer/Desarrollador	:	Jairo Burbano
+	Contact/Contacto		:	jairo.aburbano@gmail.com
+	URI						:	jburbano.com
+	Twitter					:	@bleuub
+
+
+# SITE/SITIO
+	Created/Creado: 2017-05-22
+
+# TECHNOLOGY COLOPHON/TECNOLOGÍA
+
+	- HTML5
+	- CSS3
+	- jQuery
+	- Modernizr
+	- Wordpress
+	- Yeoman

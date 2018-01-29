@@ -1,0 +1,26 @@
+{
+  "name": "teuber",
+  "version": "0.1.0",
+  "authors": [
+    "Jairo Burbano <jairo.aburbano@gmail.com>"
+  ],
+  "description": "Descripción del tema",
+  "keywords": [
+    ""
+  ],
+  "license": "",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~3.2.1",
+    "jquery-validation": "jquery-validate#~1.14.0",
+    "flexslider": "^2.6.3"
+  }
+}

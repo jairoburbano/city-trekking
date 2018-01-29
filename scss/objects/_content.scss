@@ -1,0 +1,59 @@
+/*------------------------------------*\
+$CONTENT
+\*------------------------------------*/
+.content {
+    max-width: 960px;
+    margin: auto;
+    p {
+        @include font-size(16px, 20px);
+        margin-bottom: 15px;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+.table {
+    @include respond-to(tablet) {
+        display: flex;
+        justify-content: center;
+        flex-flow: row;
+        align-items: stretch;
+        margin: 20px auto;
+        max-width: 960px;
+        width: 100%;
+    }
+    .item__table {
+        flex-grow: 1;
+        margin-bottom: 20px;
+        @include respond-to(tablet) {
+            margin-bottom: 0;
+        }
+        p {
+            padding: 20px 24px;
+            text-align: center;
+            @include font-size(14px, 16px);
+            border: 1px solid $gray-light;
+            &:first-child {
+                border-bottom: 0;
+                padding: 10px 15px;
+                background: $gray-lighter;
+                color: $principal;
+                font-weight: bold;
+                @include font-size(16px, 20px);
+            }
+        }
+    }
+}
+.map {
+    width: 100%;
+    margin-top: 70px;
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+}

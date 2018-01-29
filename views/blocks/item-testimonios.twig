@@ -1,0 +1,10 @@
+{% for item in posts %}
+<div class="item">
+    <div class="item__content--top">
+        <a href="{{item.link}}" class="item__media">
+            <img src="{{ TimberImage(item.thumbnail)|resize(360, 270) }}" alt="{{ item.title }}">
+            {{ item.title }}
+        </a><!-- /.item__media -->
+    </div><!-- /.item__content--top -->
+</div><!-- /.item -->
+{% endfor %}
